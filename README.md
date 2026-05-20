@@ -8,7 +8,36 @@ Every answer is grounded in peer-reviewed literature (PubMed), official clinical
 
 ## Architecture
 
+```mermaid
+flowchart TD
+    A([User Query]) --> B["Validator\n──────────\nPII Strip\nGuardrails\nToken Limit"]
+    B -->|Blocked| C([Safe Fallback Response])
+    B -->|Passed| D
 
+    subgraph LG["LangGraph Agent Loop  (StateGraph)"]
+        D["① Reason\nLLM → structured JSON plan\nclinical_domain · tool_steps · confidence"]
+        D --> E["② Plan\nValidate tool calls\nfilter unknown tools"]
+        E --> F["③ Act\nExecute tools directly\n(no LLM in loop)"]
+        F --> G
+
+        subgraph G["Tools"]
+            G1["search_pubmed\nNCBI Entrez API"]
+            G2["get_clinical_guidelines\nChromaDB RAG · PDF"]
+            G3["lookup_medical_code\nICD-10-CM · HCPCS\nCMS · NLM"]
+        end
+
+        G --> H["④ Observe\nSelf-reflection\ngoal_met? · gaps · additional tools"]
+        H -->|"Need more info\n(max 3 iterations)"| E
+        H -->|Goal met| I["⑤ Respond\nStructured JSON answer"]
+    end
+
+    I --> J(["Structured Response\n──────────────────\nanswer · sources · confidence\nfollow_up_questions · icd10_codes"])
+    I --> K[("SQLite Memory\nConversation history\nJSONL Reasoning Trace")]
+```
+
+**ASCII fallback:**
+
+```
 
                   ┌─────────────────────────┐
                   │    USER INPUT QUERY     │
@@ -66,28 +95,7 @@ Every answer is grounded in peer-reviewed literature (PubMed), official clinical
                   │  - Answer, Sources & ICD-10 Codes     │
                   │  - Saved to SQLite & JSONL Logs       │
                   └───────────────────────────────────────┘
-User Query
-    │
-    ▼
-[Validator]  ← PII strip · emergency detect · diagnosis/dosing guardrails
-    │ blocked → [Safe Fallback]
-    │ passed
-    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                       LangGraph Agent Loop                             │
-│                                                                        │
-│  ① REASON ──► ② PLAN ──► ③ ACT ──► TOOLS ──► ④ OBSERVE ──► ⑤ RESPOND │
-│                  ▲                                 │                   │
-│                  └──────── (need more info) ───────┘                   │
-│                            max 3 iterations                            │
-└────────────────────────────────────────────────────────────────────────┘
-    │
-    ▼
-[Structured Response]  answer · sources · confidence · icd10_codes
-    │
-    ▼
-[SQLite + JSONL Trace]  conversation memory · full reasoning trace
-
+```
 
 ### Node responsibilities
 
