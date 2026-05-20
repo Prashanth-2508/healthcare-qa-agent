@@ -66,7 +66,27 @@ Every answer is grounded in peer-reviewed literature (PubMed), official clinical
                   │  - Answer, Sources & ICD-10 Codes     │
                   │  - Saved to SQLite & JSONL Logs       │
                   └───────────────────────────────────────┘
-
+User Query
+    │
+    ▼
+[Validator]  ← PII strip · emergency detect · diagnosis/dosing guardrails
+    │ blocked → [Safe Fallback]
+    │ passed
+    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                       LangGraph Agent Loop                             │
+│                                                                        │
+│  ① REASON ──► ② PLAN ──► ③ ACT ──► TOOLS ──► ④ OBSERVE ──► ⑤ RESPOND │
+│                  ▲                                 │                   │
+│                  └──────── (need more info) ───────┘                   │
+│                            max 3 iterations                            │
+└────────────────────────────────────────────────────────────────────────┘
+    │
+    ▼
+[Structured Response]  answer · sources · confidence · icd10_codes
+    │
+    ▼
+[SQLite + JSONL Trace]  conversation memory · full reasoning trace
 
 
 ### Node responsibilities
