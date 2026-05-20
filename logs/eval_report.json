@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-05-20T04:00:32.289199+00:00",
+  "pass_threshold": 3.5,
+  "judge_model": "claude-haiku-4-5-20251001",
+  "summary": {
+    "total": 5,
+    "passed": 1,
+    "failed": 4,
+    "mean_overall": 3.14,
+    "mean_accuracy": 2.2,
+    "mean_completeness": 3.2,
+    "mean_citation_quality": 4.0,
+    "mean_latency_seconds": 26.58
+  },
+  "results": [
+    {
+      "scenario_id": "TC-001",
+      "name": "ADA 2024 T2DM First-Line Treatment",
+      "query": "What are the first-line treatments for Type 2 diabetes per ADA 2024 guidelines?",
+      "category": "clinical_guidelines",
+      "answer": "I'm unable to provide a response to this query. Please consult a qualified healthcare professional for medical advice.",
+      "blocked": false,
+      "error": "",
+      "latency_seconds": 39.49,
+      "trace_path": "logs\\eval_traces\\TC-001_20260520T035858Z.json",
+      "judge": {
+        "accuracy": 1,
+        "completeness": 3,
+        "citation_quality": 4,
+        "notes": "Heuristic: keyword_recall=0.40, citation=yes, rouge1=0.06",
+        "method": "heuristic",
+        "overall": 2.7,
+        "passed": false
+      }
+    },
+    {
+      "scenario_id": "TC-002",
+      "name": "Essential Hypertension ICD-10 Code",
+      "query": "What ICD-10 code applies to essential hypertension?",
+      "category": "medical_coding",
+      "answer": "I'm unable to provide a response to this query. Please consult a qualified healthcare professional for medical advice.\n\n---\n\n**Retrieved Evidence**\n\n**ICD-10 Codes Retrieved**: T86, D44.8, U07.1, B66.3, F01.0, F01.9",
+      "blocked": false,
+      "error": "",
+      "latency_seconds": 16.43,
+      "trace_path": "logs\\eval_traces\\TC-002_20260520T035915Z.json",
+      "judge": {
+        "accuracy": 1,
+        "completeness": 2,
+        "citation_quality": 4,
+        "notes": "Heuristic: keyword_recall=0.25, citation=yes, rouge1=0.05",
+        "method": "heuristic",
+        "overall": 2.3,
+        "passed": false
+      }
+    },
+    {
+      "scenario_id": "TC-003",
+      "name": "Medicare Part B CGM Coverage 2024",
+      "query": "Does Medicare Part B cover CGM devices in 2024?",
+      "category": "coverage_policy",
+      "answer": "I'm unable to provide a response to this query. Please consult a qualified healthcare professional for medical advice.",
+      "blocked": false,
+      "error": "",
+      "latency_seconds": 23.25,
+      "trace_path": "logs\\eval_traces\\TC-003_20260520T035938Z.json",
+      "judge": {
+        "accuracy": 3,
+        "completeness": 3,
+        "citation_quality": 4,
+        "notes": "Heuristic: keyword_recall=0.60, citation=yes, rouge1=0.08",
+        "method": "heuristic",
+        "overall": 3.3,
+        "passed": false
+      }
+    },
+    {
+      "scenario_id": "TC-004",
+      "name": "PubMed Evidence: SGLT2 Inhibitors and Heart Failure",
+      "query": "Summarize recent PubMed evidence on SGLT2 inhibitors and heart failure",
+      "category": "pubmed_evidence",
+      "answer": "I'm unable to provide a response to this query. Please consult a qualified healthcare professional for medical advice.",
+      "blocked": false,
+      "error": "",
+      "latency_seconds": 23.59,
+      "trace_path": "logs\\eval_traces\\TC-004_20260520T040002Z.json",
+      "judge": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 4,
+        "notes": "Heuristic: keyword_recall=0.92, citation=yes, rouge1=0.07",
+        "method": "heuristic",
+        "overall": 4.7,
+        "passed": true
+      }
+    },
+    {
+      "scenario_id": "TC-005",
+      "name": "CPT Code: New Patient Office Visit, Moderate Complexity",
+      "query": "What CPT code is used for a new patient office visit, moderate complexity?",
+      "category": "medical_coding",
+      "answer": "I'm unable to provide a response to this query. Please consult a qualified healthcare professional for medical advice.",
+      "blocked": false,
+      "error": "",
+      "latency_seconds": 30.16,
+      "trace_path": "logs\\eval_traces\\TC-005_20260520T040032Z.json",
+      "judge": {
+        "accuracy": 1,
+        "completeness": 3,
+        "citation_quality": 4,
+        "notes": "Heuristic: keyword_recall=0.42, citation=yes, rouge1=0.04",
+        "method": "heuristic",
+        "overall": 2.7,
+        "passed": false
+      }
+    }
+  ]
+}

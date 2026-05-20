@@ -1,0 +1,80 @@
+[
+  {
+    "id": "TC-001",
+    "name": "ADA 2024 T2DM First-Line Treatment",
+    "category": "clinical_guidelines",
+    "query": "What are the first-line treatments for Type 2 diabetes per ADA 2024 guidelines?",
+    "expected_keywords": [
+      "metformin", "GLP-1", "SGLT2", "ADA", "2024", "lifestyle",
+      "first-line", "cardiovascular", "heart failure", "kidney"
+    ],
+    "expected_contains": ["metformin", "GLP-1", "SGLT2"],
+    "reference_answer": "Per the 2024 ADA Standards of Care, first-line pharmacotherapy for Type 2 diabetes includes metformin (if tolerated and no contraindications), GLP-1 receptor agonists (especially with established cardiovascular disease or high CV risk), and SGLT-2 inhibitors (particularly when heart failure or CKD is present). Lifestyle modification (diet and exercise) remains the cornerstone of all management. Agent-agnostic glycemic control, weight management, and cardiorenal protection drive agent selection.",
+    "expected_tool_calls": ["get_clinical_guidelines", "search_pubmed"],
+    "pass_criteria": "Response mentions metformin AND at least one of GLP-1 or SGLT2 in context of ADA 2024 recommendations",
+    "notes": "Tests ADA 2024 guideline retrieval and first-line pharmacotherapy knowledge"
+  },
+  {
+    "id": "TC-002",
+    "name": "Essential Hypertension ICD-10 Code",
+    "category": "medical_coding",
+    "query": "What ICD-10 code applies to essential hypertension?",
+    "expected_keywords": [
+      "I10", "essential hypertension", "ICD-10", "primary hypertension",
+      "combination code", "I12", "I13", "chronic kidney"
+    ],
+    "expected_contains": ["I10"],
+    "reference_answer": "The ICD-10-CM code for essential (primary) hypertension is I10. This code covers hypertension not attributable to a secondary cause. When hypertension occurs with chronic kidney disease, use combination codes I12.x (hypertensive CKD); with chronic heart failure, use I11.x (hypertensive heart disease); with both CKD and heart failure, use I13.x. ICD-10-CM Official Guidelines Section I.C.9.a govern hypertension coding.",
+    "expected_tool_calls": ["lookup_medical_code"],
+    "pass_criteria": "Response explicitly includes ICD-10 code I10",
+    "notes": "Tests ICD-10 lookup for the most common outpatient primary diagnosis"
+  },
+  {
+    "id": "TC-003",
+    "name": "Medicare Part B CGM Coverage 2024",
+    "category": "coverage_policy",
+    "query": "Does Medicare Part B cover CGM devices in 2024?",
+    "expected_keywords": [
+      "Medicare", "CGM", "continuous glucose", "LCD", "therapeutic",
+      "Part B", "DMEPOS", "E2101", "A4238", "A4239", "K0553", "insulin",
+      "coverage", "CMS", "2023"
+    ],
+    "expected_contains": ["LCD", "therapeutic CGM"],
+    "reference_answer": "Yes. Medicare Part B covers therapeutic continuous glucose monitors (CGMs) under the DMEPOS benefit. Following the 2023 CMS policy expansion, coverage no longer requires insulin use. Governing policy: LCD L33822 (Noridian) and related contractor LCDs. HCPCS codes include E2101 (CGM receiver/display device), A4238/A4239 (CGM supplies/sensors), K0553/K0554 (therapeutic CGM categories). Documentation must establish medical necessity for diabetes management, and the ordering physician must treat the beneficiary's diabetes.",
+    "expected_tool_calls": ["get_clinical_guidelines", "lookup_medical_code"],
+    "pass_criteria": "Response mentions LCD policy reference AND therapeutic CGM coverage expansion (insulin requirement removed)",
+    "notes": "Tests CMS coverage policy retrieval and HCPCS code awareness for a common RCM scenario"
+  },
+  {
+    "id": "TC-004",
+    "name": "PubMed Evidence: SGLT2 Inhibitors and Heart Failure",
+    "category": "pubmed_evidence",
+    "query": "Summarize recent PubMed evidence on SGLT2 inhibitors and heart failure",
+    "expected_keywords": [
+      "PMID", "SGLT2", "heart failure", "empagliflozin", "dapagliflozin",
+      "EMPEROR", "DAPA-HF", "HFrEF", "hospitalization", "randomized",
+      "cardiovascular", "mortality"
+    ],
+    "expected_contains": ["PMID"],
+    "reference_answer": "SGLT2 inhibitors show robust benefit in heart failure across landmark trials. EMPEROR-Reduced (PMID 32865375, NEJM 2020): empagliflozin reduced composite CV death or HF hospitalization by 25% in HFrEF. DAPA-HF (PMID 31535829, NEJM 2019): dapagliflozin reduced worsening HF or CV death by 26% in HFrEF. EMPEROR-Preserved (PMID 34449189): empagliflozin demonstrated benefit in HFpEF. Both empagliflozin and dapagliflozin are now FDA-approved for HFrEF regardless of diabetes status.",
+    "expected_tool_calls": ["search_pubmed"],
+    "pass_criteria": "Response cites at least 1 PMID from a relevant cardiovascular outcomes trial",
+    "notes": "Tests PubMed retrieval and citation of landmark cardiovascular RCTs"
+  },
+  {
+    "id": "TC-005",
+    "name": "CPT Code: New Patient Office Visit, Moderate Complexity",
+    "category": "medical_coding",
+    "query": "What CPT code is used for a new patient office visit, moderate complexity?",
+    "expected_keywords": [
+      "99204", "99205", "new patient", "office visit", "moderate",
+      "CPT", "E/M", "evaluation and management", "medical decision",
+      "45 minutes", "AMA", "2021"
+    ],
+    "expected_contains": ["99204", "99205"],
+    "reference_answer": "CPT code 99204 covers a new patient office or outpatient visit with moderate medical decision making (MDM) or 45 minutes of total physician time. CPT 99205 covers a new patient visit with high MDM or 60 minutes of total time. Per the 2021 AMA E/M revisions, history and physical exam are no longer required elements; MDM complexity or total time determines the level. Note: CPT codes are proprietary to the AMA and require a license for redistribution.",
+    "expected_tool_calls": ["lookup_medical_code"],
+    "pass_criteria": "Response includes CPT 99204 or 99205 with supporting E/M coding context",
+    "notes": "Tests E/M coding knowledge; agent should acknowledge AMA CPT licensing restrictions"
+  }
+]

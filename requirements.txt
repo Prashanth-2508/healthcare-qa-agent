@@ -1,0 +1,48 @@
+# ── Core agent framework ──────────────────────────────────────────────────────
+langgraph==0.2.74
+langchain==0.3.20
+langchain-core==0.3.28
+langchain-ollama==0.2.3
+langchain-community==0.3.20
+langchain-openai==0.2.14        # OpenAI-compatible backends (Together, Groq)
+langchain-huggingface==0.1.2
+langchain-groq==0.2.4
+
+# ── PubMed / NCBI ─────────────────────────────────────────────────────────────
+biopython==1.84                 # Entrez & Medline parsers
+
+# ── Guidelines RAG ────────────────────────────────────────────────────────────
+sentence-transformers==3.3.1    # Dense embeddings (all-MiniLM-L6-v2 default)
+chromadb==0.6.3                 # Local persistent vector store
+pypdf==4.3.0                    # PDF text extraction
+
+# ── Code lookup ───────────────────────────────────────────────────────────────
+rapidfuzz==3.10.1               # Fuzzy string matching for ICD-10 / CPT
+
+# ── HTTP ──────────────────────────────────────────────────────────────────────
+requests==2.32.3
+httpx==0.27.2
+aiohttp==3.11.10
+
+# ── Database / memory ─────────────────────────────────────────────────────────
+sqlalchemy==2.0.36
+
+# ── Config / validation ───────────────────────────────────────────────────────
+python-dotenv==1.0.1
+pydantic==2.10.6
+pydantic-settings==2.6.1
+
+# ── Retry / resilience ────────────────────────────────────────────────────────
+tenacity==9.0.0
+
+# ── Structured logging ────────────────────────────────────────────────────────
+structlog==24.4.0
+
+# ── Evaluation ────────────────────────────────────────────────────────────────
+rouge-score==0.1.2
+
+# ── LLM-as-judge (evaluation) ─────────────────────────────────────────────────
+anthropic==0.50.0               # Claude-as-judge in src/evaluation/evaluator.py
+
+# ── Streamlit UI ──────────────────────────────────────────────────────────────
+streamlit==1.41.1               # Chat UI (src/ui/app.py)

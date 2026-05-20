@@ -1,0 +1,4 @@
+[server]
+# Disable file watcher to prevent Streamlit from scanning installed packages
+# (which triggers transformers → torchvision lazy import on Windows)
+fileWatcherType = "none"
